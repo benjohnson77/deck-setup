@@ -1,0 +1,36 @@
+- hosts: localhost
+  become: true
+  tasks:
+  - name: Install packages
+    apt:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - htop
+      - mc
+      - tmux
+      - git
+      - tlp
+      - tlp-rdw
+      - gnome-tweak-tool
+      - synaptic
+      - vlc
+      - gdebi-core
+      - preload
+      - fish
+      - curl
+      - nodejs
+      - npm
+      - terminator
+      - i3
+  - name: Install snap packages like slack
+    snap:
+      name: "{{ item }}"
+      classic: yes
+    loop:
+      - slack
+      - atom
+      - chromium
+  - name: Run command if /path/to/database does not exist (with 'cmd' parameter)
+    command:
+      cmd: chsh -s /usr/bin/fish
